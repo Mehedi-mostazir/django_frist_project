@@ -25,4 +25,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('fristapp/',include('fristapp.urls')),
 
+    path("__reload__/", include("django_browser_reload.urls")),
+
 ]
