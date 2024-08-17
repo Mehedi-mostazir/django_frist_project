@@ -20,7 +20,7 @@ from . import views
 
 urlpatterns = [
     path('',views.all_fristapp, name='all_fristapp'),
+    path('<int:app_id>/', views.app_detail, name='app_detail')
     
-
 
 ]
