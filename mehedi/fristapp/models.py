@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 class appvaraity(models.Model):
@@ -19,4 +19,16 @@ class appvaraity(models.Model):
 
   def __str__(self):
     return self.name
- 
+  
+
+#One two many
+class appreview(models.Model):
+  app = models.ForeignKey(appvaraity, on_delete= models.CASCADE, related_name='reviews')
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  rating = models.IntegerField()
+  comment = models.TextField()
+  date_added = models.DateTimeField(default=timezone.now)
+
+  def __str__(self):
+      return f'{self.user.username} review for {self.app.name}'
+  
