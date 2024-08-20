@@ -32,9 +32,29 @@ class appreview(models.Model):
   def __str__(self):
       return f'{self.user.username} review for {self.app.name}'
   
-  
+
 # Many to many
 class Store(models.Model):
    name = models.CharField(max_length=100)
    location = models.CharField(max_length=100)
    app_varieties = models.ManyToManyField(appvaraity, related_name= 'stores')
+   
+
+   def __str__(self):
+       return self.name
+
+# One to one
+
+class appCertificate(models.Model):
+   app = models.OneToOneField(appvaraity, on_delete=models.CASCADE, related_name= 'certificate')
+   certificate_number = models.CharField(max_length=100)
+   issued_date = models.DateTimeField(default=timezone.now)
+   valid_untill = models.DateTimeField
+
+   def __str__(self):
+       return f'Certificate for {self.name.app}'
+   
+
+   
+
+   
