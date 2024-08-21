@@ -5,7 +5,7 @@ from .models import appvaraity,appreview,appCertificate,Store
 
 class appReviewInLine(admin.TabularInline):
   model = appreview
-  extras = 2
+  extra = 1
 
 class appvarityAdmin(admin.ModelAdmin):
   list_display = ('name','type','date_added')
@@ -13,14 +13,12 @@ class appvarityAdmin(admin.ModelAdmin):
 
 class StoreAdmin(admin.ModelAdmin):
   list_display = ('name','location')
-  filter_horizontal = ('app_varities',)
-
+  filter_horizontal = ('app_varieties', )
 class appCertificateAdmin(admin.ModelAdmin):
   list_display = ('app', 'certificate_number')
 
 
 # Register your models here.
 admin.site.register(appvaraity, appvarityAdmin)
-admin.site.register(appreview)
-admin.site.register(appCertificate)
-admin.site.register(Store)
+admin.site.register(appCertificate, appCertificateAdmin)
+admin.site.register(Store,StoreAdmin)
